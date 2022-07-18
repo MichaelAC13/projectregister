@@ -1,12 +1,9 @@
-from attr import validate
 from bson import ObjectId
 from mongo.dbmongo import dbmongo
 import hashlib
 import jwt
-import json
 
-
-class Workbase():
+class workbase():
     def __init__(self,obj):
         try:
             hash = hashlib.md5()

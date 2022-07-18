@@ -1,7 +1,7 @@
 from flask import Flask,request
 from flask import jsonify
 from flask_cors import CORS, cross_origin
-from mongo.app import Workbase
+from mongo.app import workbase
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/": {"origins": "*.*"}})
@@ -24,10 +24,10 @@ def creatuser():
         obj = request.get_json()
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         print(token)
         if token['token'] == "valid":
-            a = Workbase(obj).creatuser()
+            a = workbase(obj).creatuser()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -40,7 +40,7 @@ def creatuser():
 def authenticate(): 
     try:
         obj = request.get_json()
-        a = Workbase(obj).validateuser()
+        a = workbase(obj).validateuser()
         return jsonify(a[0]), a[1]
     except:
         return {"message": "internal server erro"}, 500
@@ -53,9 +53,9 @@ def idusers(ID):
         obj={'user_id': ID,}
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).idselectuser()
+            a = workbase(obj).idselectuser()
             return jsonify(a[0]), a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -71,9 +71,9 @@ def putuser(ID):
         obj['user_id'] = ID
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).putuser()
+            a = workbase(obj).putuser()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -88,9 +88,9 @@ def createproject():
         obj = request.get_json()
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).createproject()
+            a = workbase(obj).createproject()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -105,9 +105,9 @@ def selectprojects():
         obj = {}
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).selectprojects()
+            a = workbase(obj).selectprojects()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -122,9 +122,9 @@ def selectprojectid(ID):
         obj = {'project_id': ID,}
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).selectprojectid()
+            a = workbase(obj).selectprojectid()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -140,9 +140,9 @@ def putproject(ID):
         obj['project_id'] = ID
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).putproject()
+            a = workbase(obj).putproject()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -157,9 +157,9 @@ def times():
         obj = request.get_json()
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).registertime()
+            a = workbase(obj).registertime()
             return jsonify(a[0]), a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -174,9 +174,9 @@ def idselecttime(ID):
         obj = {'time_id': ID,}
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).idselecttime()
+            a = workbase(obj).idselecttime()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
@@ -192,9 +192,9 @@ def puttime(ID):
         obj['time_id'] = ID
         header = request.headers['token']
         obj["currenttoken"] = header
-        token = Workbase(obj).validatetoken()
+        token = workbase(obj).validatetoken()
         if token['token'] == "valid":
-            a = Workbase(obj).puttime()
+            a = workbase(obj).puttime()
             return jsonify(a[0]),a[1]
         else:
             return {"message": "current user has not been validated"}, 401
