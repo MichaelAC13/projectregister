@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask, request
 from flask import jsonify
 from flask_cors import CORS, cross_origin
 from mongo.app import workbase
